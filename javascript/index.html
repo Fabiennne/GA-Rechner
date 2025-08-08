@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA-Rechner</title>
+    
+</head>
+
+<body onload="addPersonInputs()">
+    <h1>GA-Rechner</h1>
+
+    <form action="javascript:calculateCosts()">
+
+        <h2>Personalien</h2>
+        <div class="personen" id="personen">
+            <!-- mit addPersonInputs() werden Inputfelder für Personen hier eingefügt -->
+        </div>
+        <!-- <button type="button" onclick="addPersonInputs()">Person hinzufügen</button> -->
+
+        <h2>Pendelstrecken</h2>
+        <div class="pendeln" id="pendeln">
+            <!-- mit addPendelnInputs() werden Inputfelder für Pendelstrecken hier eingefügt -->
+        </div>
+        <button type="button" onclick="addPendelnInputs()">Pendelstrecke hinzufügen</button>
+
+        <h2>Einzelne Reisen</h2>
+        <div class="reisen" id="reisen">
+            <!-- mit addReiseInputs() werden Inputfelder für Einzelne Reisen hier eingefügt -->
+        </div>
+        <button type="button" onclick="addReiseInputs()">Reise hinzufügen</button>
+
+        <p><strong>Wichtig:</strong> Es wird mit einem Jahr gerechnet, welches 52 Wochen hat.</p>
+
+        <button type="submit">Berechnen</button> <!-- Funktion aufrufen, Funktion erstellen -->
+    </form>
+
+    
+
+    <!-- Resultat anzeigen -->
+    <!--
+        - Einzelbillete kaufen
+        - Tageskarten kaufen
+        - Streckenabo
+        - Halbtax + Billete
+        - Halbtax Plus
+        - GA
+        - 1. Klasse/2. Klasse
+
+        Sortieren: Preis aufsteigend
+        pro Resultat eine Funktion
+        sortieren als Funktion?
+    -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
