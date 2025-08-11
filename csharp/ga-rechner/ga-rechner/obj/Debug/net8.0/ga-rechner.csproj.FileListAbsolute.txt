@@ -1,0 +1,15 @@
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\bin\Debug\net8.0\ga-rechner.exe
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\bin\Debug\net8.0\ga-rechner.deps.json
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\bin\Debug\net8.0\ga-rechner.runtimeconfig.json
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\bin\Debug\net8.0\ga-rechner.dll
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\bin\Debug\net8.0\ga-rechner.pdb
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.AssemblyInfoInputs.cache
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.AssemblyInfo.cs
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.csproj.CoreCompileInputs.cache
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.sourcelink.json
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.dll
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\refint\ga-rechner.dll
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.pdb
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ga-rechner.genruntimeconfig.cache
+C:\Users\M0608636\Source\Repos\Fabiennne\GA-Rechner\csharp\ga-rechner\ga-rechner\obj\Debug\net8.0\ref\ga-rechner.dll
