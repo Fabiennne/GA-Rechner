@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GAPrices.gaKindKl1);
+            //foreach (var item in sortedCosts)
+            //{
+            //    Console.WriteLine($"{item.Name}: {item.Cost}");
+            //}
         }
     }
 }

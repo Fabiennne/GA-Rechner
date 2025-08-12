@@ -8,7 +8,17 @@ namespace ga_rechner
 {
     public class Commute : TrainTravel
     {
-        private int daysPerWeek {  get; set; }
-        private int ridesPerDay { get; set; }
+        private int TravelDaysPerWeek {  get; set; }
+        private int RidesPerDay { get; set; }
+        private int VacationWeeks { get; set; }
+
+        public double CalculateCommuteCostPerYear()
+        {
+            double costsPerDay = this.PricePerJourney * this.RidesPerDay;
+            double costsPerWeek = costsPerDay * this.TravelDaysPerWeek;
+            double costsPerYear = costsPerWeek * (52 - this.VacationWeeks);
+
+            return costsPerYear;
+        }
     }
 }

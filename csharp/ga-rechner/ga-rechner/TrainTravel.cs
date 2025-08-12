@@ -8,9 +8,9 @@ namespace ga_rechner
 {
     public abstract class TrainTravel
     {
-        protected string start {  get; private set; }
-        protected string end { get; private set; }
-        protected double pricePerJourney { get; private set; }
-        protected enum trainClass { First, Second }
+        protected string Start {  get; private set; }
+        protected string End { get; private set; }
+        protected double PricePerJourney { get; private set; }
+        protected EnumTrainClass TrainClass {  get; private set; }
     }
 }

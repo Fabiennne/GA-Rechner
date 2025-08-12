@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ga_rechner
 {
-    public class GAPrices
+    public class Prices
     {
         public static readonly int gaErwachsenKl1 = 6520;
         public static readonly int gaErwachsenKl2 = 3995;
@@ -22,5 +22,18 @@ namespace ga_rechner
         public static readonly int gaBehinderungKl2 = 2600;
         public static readonly int gaDuoKl1 = 4450;
         public static readonly int gaDuoKl2 = 2860;
+
+        public static readonly int halbErwachsenNeu = 190;
+        public static readonly int halbErwachsenTreu = 170;
+        public static readonly int halbJugendNeu = 120;
+        public static readonly int halbJugendTreu = 100;
+
+        public static readonly int[] halbPlusErwachsen1000 = [800, 1000];
+        public static readonly int[] halbPlusErwachsen2000 = [1500, 2000];
+        public static readonly int[] halbPlusErwachsen3000 = [2100, 3000];
+
+        public static readonly int[] halbPlusJugend1000 = [600, 1000];
+        public static readonly int[] halbPlusJugend2000 = [1125, 2000];
+        public static readonly int[] halbPlusJugend3000 = [1575, 3000];
     }
 }
