@@ -3,36 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\travel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\travel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\traintravel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\traintravel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\enumsingleretour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\enumsingleretour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\gaprices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\gaprices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\enumtrainclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\enumtrainclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\commute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\commute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|c:\\users\\m0608636\\source\\repos\\fabiennne\\ga-rechner\\csharp\\ga-rechner\\ga-rechner\\prices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89553D3B-6057-4636-9D18-DFCEE7D92E1E}|ga-rechner\\ga-rechner.csproj|solutionrelative:ga-rechner\\prices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 132,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,104 +70,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EnumSingleRetour.cs",
-              "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\EnumSingleRetour.cs",
-              "RelativeDocumentMoniker": "ga-rechner\\EnumSingleRetour.cs",
-              "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\EnumSingleRetour.cs",
-              "RelativeToolTip": "ga-rechner\\EnumSingleRetour.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T07:43:05.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "EnumTrainClass.cs",
-              "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\EnumTrainClass.cs",
-              "RelativeDocumentMoniker": "ga-rechner\\EnumTrainClass.cs",
-              "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\EnumTrainClass.cs",
-              "RelativeToolTip": "ga-rechner\\EnumTrainClass.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T07:41:23.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GAPrices.cs",
-              "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\GAPrices.cs",
-              "RelativeDocumentMoniker": "ga-rechner\\GAPrices.cs",
-              "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\GAPrices.cs",
-              "RelativeToolTip": "ga-rechner\\GAPrices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA0AAAAAAAAAA==",
+              "Title": "Prices.cs",
+              "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Prices.cs",
+              "RelativeDocumentMoniker": "ga-rechner\\Prices.cs",
+              "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Prices.cs",
+              "RelativeToolTip": "ga-rechner\\Prices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAACCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T14:06:51.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TrainTravel.cs",
               "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\TrainTravel.cs",
               "RelativeDocumentMoniker": "ga-rechner\\TrainTravel.cs",
               "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\TrainTravel.cs",
               "RelativeToolTip": "ga-rechner\\TrainTravel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T06:27:02.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Travel.cs",
               "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Travel.cs",
               "RelativeDocumentMoniker": "ga-rechner\\Travel.cs",
               "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Travel.cs",
               "RelativeToolTip": "ga-rechner\\Travel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T06:14:03.092Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Commute.cs",
               "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Commute.cs",
               "RelativeDocumentMoniker": "ga-rechner\\Commute.cs",
               "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Commute.cs",
               "RelativeToolTip": "ga-rechner\\Commute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T06:13:29.508Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Person.cs",
               "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Person.cs",
               "RelativeDocumentMoniker": "ga-rechner\\Person.cs",
               "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Person.cs",
               "RelativeToolTip": "ga-rechner\\Person.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAC4BAAAAAAAAAIAzwGcBAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T06:11:17.921Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Program.cs",
               "RelativeDocumentMoniker": "ga-rechner\\Program.cs",
               "ToolTip": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\Program.cs",
               "RelativeToolTip": "ga-rechner\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T06:09:02.023Z",
               "EditorCaption": ""

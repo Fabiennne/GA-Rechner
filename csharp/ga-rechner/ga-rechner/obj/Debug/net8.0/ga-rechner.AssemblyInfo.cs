@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+245112b76d43fdb6dba851fc1146170ca545a6d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9381cc387cb2d71732e6cac6a4dfbe5c46a74ab6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

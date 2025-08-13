@@ -10,61 +10,164 @@ namespace ga_rechner
     {
         private string Name { get; set; }
         private DateTime Birthday { get; set; }
+        private int Age { get; set; }
         private string Street { get; set; }
         private string City { get; set; }
         private List<Travel> Travels { get; set; }
         private List<Commute> Commutes { get; set; }
-        private Boolean IsHalbtaxNew { get; set; }
+        private bool HasHalbtax { get; set; }
+        private double Costs { get; set; }
         
-        public Person(string personName, DateTime personBirthday, string personStreet, string personCity)
+        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, bool personHasHalbtax = false)
         {
             this.Name = personName;
             this.Birthday = personBirthday;
+            this.Age = GetAge();
             this.Street = personStreet;
             this.City = personCity;
+            this.Travels = new List<Travel>();
+            this.Commutes = new List<Commute>();
+            this.HasHalbtax = personHasHalbtax && CanHaveHalbTax() ? true : false;
+            this.Costs = CalculateCosts();
         }
 
-        public List<(string Name, double Cost)> CompareSubscriptions()
+        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Travel personTravel, bool personHasHalbtax = false)
         {
-            int age = GetAge();
-            if (age < 6)
+            this.Name = personName;
+            this.Birthday = personBirthday;
+            this.Age = GetAge();
+            this.Street = personStreet;
+            this.City = personCity;
+            this.Travels = new List<Travel> { personTravel };
+            this.Commutes = new List<Commute>();
+            this.HasHalbtax = personHasHalbtax && CanHaveHalbTax() ? true : false;
+            this.Costs = CalculateCosts();
+        }
+
+        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Commute personCommute, bool personHasHalbtax = false)
+        {
+            this.Name = personName;
+            this.Birthday = personBirthday;
+            this.Age = GetAge();
+            this.Street = personStreet;
+            this.City = personCity;
+            this.Travels = new List<Travel>();
+            this.Commutes = new List<Commute> { personCommute };
+            this.HasHalbtax = personHasHalbtax && CanHaveHalbTax() ? true : false;
+            this.Costs = CalculateCosts();
+        }
+
+        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Travel personTravel, Commute personCommute, bool personHasHalbtax = false)
+        {
+            this.Name = personName;
+            this.Birthday = personBirthday;
+            this.Age = GetAge();
+            this.Street = personStreet;
+            this.City = personCity;
+            this.Travels = new List<Travel> { personTravel };
+            this.Commutes = new List<Commute> { personCommute };
+            this.HasHalbtax = personHasHalbtax && CanHaveHalbTax() ? true : false;
+            this.Costs = CalculateCosts(); //TODO: handle case if "travels" and "commutes" lists are both empty
+        }
+
+        public string getPersonName()
+        {
+            return this.Name;
+        }
+
+        public void setPersonName(string newName)
+        {
+            this.Name = newName;
+        }
+
+        public void AddTravel(Travel newTravel)
+        {
+            this.Travels.Add(newTravel);
+            this.Costs = CalculateCosts();
+        }
+
+        public void AddCommute(Commute newCommute)
+        {
+            this.Commutes.Add(newCommute);
+            this.Costs = CalculateCosts();
+        }
+
+        public void EmptyTravels()
+        {
+            this.Travels.Clear();
+            this.Costs = CalculateCosts();
+        }
+
+        public void EmptyCommutes()
+        {
+            this.Commutes.Clear();
+            this.Costs = CalculateCosts();
+        }
+
+        public List<(string Name, double Cost)> GetOrderedListOfCosts()
+        {
+            if (!NeedsTickets())
             {
                 return new List<(string Name, double Cost)>
                 {
-                    ("Gratisfahrt mit Eltern", 0)
+                    (this.Name + " fährt kostenlos: ", 0)
                 };
             }
 
-            double costs = CalculateCosts(); //
+            List<(string Name, double Cost)> listOfCosts = GetListOfCosts();
 
-            var gaCosts = GetGAPrices(age);
-            double gaCostsFirstClass = gaCosts.FirstClass; //
-            double gaCostsSecondClass = gaCosts.SecondClass; //
+            //remove values with -1
+            List<(string Name, double Cost)> cleanedList = RemoveEmptyListItems(listOfCosts);
 
-            int halbPrice = GetHalbPrice(age);
-            int[,] halbPlusPrices = GetHalbPlusPrices(age);
+            //order list
+            List<(string Name, double Cost)> sortedCosts = SortList(cleanedList);
 
-            double costsWithHalb = CalculateCostsWithHalb(costs, halbPrice); //
+            //return ordered list
+            return sortedCosts;
+        }
 
-            double[] costsWithHalbPlus = CalculateCostsWithHalbPlus(halbPlusPrices, costs);
-            var cheapestHalbPlus = DetermineCheapestHalbPlus(costsWithHalbPlus); //
+        public List<(string Name, double Cost)> GetListOfCosts()
+        {
+            var gaCosts = GetGAPrices();
+            double gaCostsFirstClass = gaCosts.FirstClass;
+            double gaCostsSecondClass = gaCosts.SecondClass;
 
-            double[] costsWithHalbAndHalbPlus = CalculateCostsWithHalbAndHalbPlus(costs, halbPrice, halbPlusPrices);
-            var cheapestHalbPlusWithHalb = DetermineCheapestHalbPlus(costsWithHalbAndHalbPlus); //
+            int halbPrice = GetHalbPrice();
+            List<(string Name, int Cost, int Credit)> halbPlusPrices = GetHalbPlusPrices();
 
-            var costsList = new List<(string Name, double Cost)>
+            double costsWithHalb = CalculateCostsWithHalb();
+
+            List<(string Name, double Cost)> costsWithHalbPlus = CalculateCostsWithHalbPlus(this.Costs);
+            var cheapestHalbPlus = CalculateCheapestHalbPlusPrice();
+
+            List<(string Name, double Cost)> costsWithHalbAndHalbPlus = CalculateCostsWithHalbAndHalbPlus();
+            var cheapestHalbPlusWithHalb = CalculateCheapestHalbPlusWithHalbPrice();
+
+            List<(string Name, double Cost)> costsList = new List<(string Name, double Cost)>
             {
-                ("Kosten ohne Abo: ", costs),
-                ("GA (1.Klasse): ", gaCostsFirstClass),
-                ("GA (2.Klasse): ", gaCostsSecondClass),
-                ("Kosten mit Halbtax: ", costsWithHalb),
-                ("Günstigstes Halbtax Plus (" + cheapestHalbPlus.Category + "): ", cheapestHalbPlus.Cost),
-                ("Günstigstes Halbtax Plus (" + cheapestHalbPlus.Category + ") mit Halbtax: ", cheapestHalbPlusWithHalb.Cost)
+                ("Kosten ohne Abo", this.Costs),
+                ("GA (1.Klasse)", gaCostsFirstClass),
+                ("GA (2.Klasse)", gaCostsSecondClass),
+                ("Halbtax", costsWithHalb),
+                (cheapestHalbPlus.Category, cheapestHalbPlus.Cost),
+                (cheapestHalbPlusWithHalb.Category, cheapestHalbPlusWithHalb.Cost)
             };
 
-            var sortedCosts = costsList.OrderBy(t => t.Cost);
+            return costsList;
+        }
 
-            return (List<(string Name, double Cost)>)sortedCosts;
+        public List<(string Name, double Cost)> RemoveEmptyListItems(List<(string Name, double Cost)> costList)
+        {
+            costList.RemoveAll(c => c.Cost == -1);
+            
+            return costList;
+        }
+
+        public List<(string Name, double Cost)> SortList(List<(string Name, double Cost)> unsortedList)
+        {
+            List<(string Name, double Cost)> sortedList = (List<(string Name, double Cost)>)unsortedList.OrderBy(t => t.Cost);
+
+            return sortedList;
         }
 
         private int GetAge()
@@ -84,6 +187,11 @@ namespace ga_rechner
 
         public double CalculateCosts()
         {
+            if (!NeedsTickets())
+            {
+                return 0;
+            }
+
             double travelCosts = GetTravelCosts();
             double commuteCosts = GetCommuteCosts();
             double totalCosts = travelCosts + commuteCosts;
@@ -91,7 +199,7 @@ namespace ga_rechner
             return totalCosts;
         }
 
-        public double GetTravelCosts()
+        private double GetTravelCosts()
         {
             double totalCosts = 0;
             double cost = 0;
@@ -105,7 +213,7 @@ namespace ga_rechner
             return totalCosts;
         }
 
-        public double GetCommuteCosts()
+        private double GetCommuteCosts()
         {
             double totalCosts = 0;
             double cost = 0;
@@ -119,31 +227,31 @@ namespace ga_rechner
             return totalCosts;
         }
 
-        public (int FirstClass, int SecondClass) GetGAPrices(int age)
+        public (int FirstClass, int SecondClass) GetGAPrices()
         {
             int one, two;
 
-            if (age >= 65)
+            if (this.Age >= 65)
             {
                 one = Prices.gaSeniorKl1;
                 two = Prices.gaSeniorKl2;
             }
-            else if (age >= 26)
+            else if (this.Age >= 26)
             {
                 one = Prices.gaErwachsenKl1;
                 two = Prices.gaErwachsenKl2;
             }
-            else if (age == 25)
+            else if (this.Age == 25)
             {
                 one = Prices.ga25Kl1;
                 two = Prices.ga25Kl2;
             }
-            else if (age >= 16)
+            else if (this.Age >= 16)
             {
                 one = Prices.gaJugendKl1;
                 two = Prices.gaJugendKl2;
             }
-            else if (age >= 6)
+            else if (this.Age >= 6)
             {
                 one = Prices.gaKindKl1;
                 two = Prices.gaKindKl2;
@@ -157,125 +265,187 @@ namespace ga_rechner
             return (one, two);
         }
 
-        public int GetHalbPrice(int age)
+        public int GetHalbPrice()
         {
+            if (!CanHaveHalbTax())
+            {
+                return -1;
+            }
+
             int halbPrice = 0;
 
-            if (age >= 25)
+            if (this.Age >= 25)
             {
-                if (this.IsHalbtaxNew)
-                {
-                    halbPrice = Prices.halbErwachsenNeu;
-                }
-                else
+                if (this.HasHalbtax)
                 {
                     halbPrice = Prices.halbErwachsenTreu;
                 }
-            }
-            else if (age >= 16)
-            {
-                if (this.IsHalbtaxNew)
-                {
-                    halbPrice = Prices.halbJugendNeu;
-                }
                 else
+                {
+                    halbPrice = Prices.halbErwachsenNeu;
+                }
+            }
+            else if (this.Age >= 16)
+            {
+                if (this.HasHalbtax)
                 {
                     halbPrice = Prices.halbJugendTreu;
                 }
-            }
-            else
-            {
-                halbPrice = -1;
+                else
+                {
+                    halbPrice = Prices.halbJugendNeu;
+                }
             }
 
             return halbPrice;
         }
 
-        public int[,] GetHalbPlusPrices(int age)
+        public List<(string Name, int Cost, int Credit)> GetHalbPlusPrices()
         {
-            int[,] halbPlusPrices = new int[3, 2];
-
-            if (age >= 25)
+            if (!CanHaveHalbPlusOrGA())
             {
-                halbPlusPrices[0, 0] = Prices.halbPlusErwachsen1000[0];
-                halbPlusPrices[0, 1] = Prices.halbPlusErwachsen1000[1];
-                halbPlusPrices[1, 0] = Prices.halbPlusErwachsen2000[0];
-                halbPlusPrices[1, 1] = Prices.halbPlusErwachsen2000[1];
-                halbPlusPrices[2, 0] = Prices.halbPlusErwachsen3000[0];
-                halbPlusPrices[2, 1] = Prices.halbPlusErwachsen3000[1];
+                return new List<(string Name, int Cost, int Credit)> { (string.Empty, -1, -1) };
             }
-            else if (age >= 6)
+
+            List<(string Name, int Cost, int Credit)> halbPlusPrices = new List<(string Name, int Cost, int Credit)> { };
+
+            if (this.Age >= 25)
             {
-                halbPlusPrices[0, 0] = Prices.halbPlusJugend1000[0];
-                halbPlusPrices[0, 1] = Prices.halbPlusJugend1000[1];
-                halbPlusPrices[1, 0] = Prices.halbPlusJugend2000[0];
-                halbPlusPrices[1, 1] = Prices.halbPlusJugend2000[1];
-                halbPlusPrices[2, 0] = Prices.halbPlusJugend3000[0];
-                halbPlusPrices[2, 1] = Prices.halbPlusJugend3000[1];
+                halbPlusPrices.Add(Prices.halbPlusErwachsen1000);
+                halbPlusPrices.Add(Prices.halbPlusErwachsen2000);
+                halbPlusPrices.Add(Prices.halbPlusErwachsen3000);
             }
             else
             {
-                for (int i = 0; i < halbPlusPrices.GetLength(0); i++)
-                {
-                    for(int j = 0; j < halbPlusPrices.GetLength(1); j++)
-                    {
-                        halbPlusPrices[i, j] = -1;
-                    }
-                }
+                halbPlusPrices.Add(Prices.halbPlusJugend1000);
+                halbPlusPrices.Add(Prices.halbPlusJugend2000);
+                halbPlusPrices.Add(Prices.halbPlusJugend3000);
             }
 
             return halbPlusPrices;
         }
 
-        public double[] CalculateCostsWithHalbPlus(int[,] halbPlusPrices, double costs)
+        public double CalculateCostsWithHalb()
         {
-            int halbPlusPricesLength = halbPlusPrices.GetLength(0);
-            double[] costsWithHalbPlus = new double[halbPlusPricesLength];
+            int halbPrice = GetHalbPrice(); //can be -1
 
-            for (int i = 0; i < halbPlusPrices.GetLength(0); i++)
+            if (!CanHaveHalbTax())
             {
-                if (costs > halbPlusPrices[i, 1])
+                return -1;
+            }
+            return (this.Costs / 2) + halbPrice;
+        }
+
+        public List<(string Name, double Cost)> CalculateCostsWithHalbPlus(double costPerYear)
+        {
+            if (!CanHaveHalbPlusOrGA())
+            {
+                return new List<(string Name, double Cost)> { (string.Empty, -1) };
+            }
+
+            List<(string Name, int Cost, int Credit)> halbPlusPrices = GetHalbPlusPrices();
+
+            List<(string Name, double Cost)> costsWithHalbPlus = new List<(string Name, double Cost)> { };
+            double tempCost;
+
+            for (int i = 0; i < halbPlusPrices.Count(); i++)
+            {
+                if (costPerYear > halbPlusPrices[i].Credit)
                 {
-                    costsWithHalbPlus[i] = costs - halbPlusPrices[i, 1] + halbPlusPrices[i, 0];
+                    tempCost = costPerYear - halbPlusPrices[i].Credit + halbPlusPrices[i].Cost;
+                    costsWithHalbPlus.Add((costsWithHalbPlus[i].Name, tempCost));
                 }
                 else
                 {
-                    costsWithHalbPlus[i] = halbPlusPrices[i, 0];
+                    costsWithHalbPlus.Add((costsWithHalbPlus[i].Name, halbPlusPrices[i].Cost));
                 }
             }
 
             return costsWithHalbPlus;
         }
 
-        public double CalculateCostsWithHalb(double costs, int halbPrice)
+        public List<(string Name, double Cost)> CalculateCostsWithHalbAndHalbPlus()
         {
-            return (costs / 2) + halbPrice;
-        }
+            if (!CanHaveHalbTax())
+            {
+                return new List<(string Name, double Cost)> { (string.Empty, -1) };
+            }
 
-        public double[] CalculateCostsWithHalbAndHalbPlus(double costs, int halbPrice, int[,] halbPlusPrices)
-        {
-            double costsWithHalb = CalculateCostsWithHalb(costs, halbPrice);
+            double costsWithHalb = CalculateCostsWithHalb();
 
-            double[] totalCosts = CalculateCostsWithHalbPlus(halbPlusPrices, costsWithHalb);
+            List<(string Name, double Cost)> totalCosts = CalculateCostsWithHalbPlus(costsWithHalb);
 
             return totalCosts;
         }
 
-        public (int Category, double Cost) DetermineCheapestHalbPlus(double[] halbPlusPrices)
+        public (string Category, double Cost) CalculateCheapestHalbPlusPrice()
         {
-            double price = -1;
-            int category = -1;
-
-            for (int i = 0; i < halbPlusPrices.Length; i++)
+            if (!CanHaveHalbPlusOrGA())
             {
-                if (halbPlusPrices[i] < price || price == 0)
-                {
-                    price = halbPlusPrices[i];
+                return (string.Empty, -1);
+            }
 
-                    category = (i++) * 1000;
+            List<(string Name, double Cost)> costsWithHalbPlus = CalculateCostsWithHalbPlus(this.Costs);
+            var cheapestHalbPlus = DetermineCheapestHalbPlus(costsWithHalbPlus);
+
+            return (cheapestHalbPlus);
+        }
+
+        public (string Category, double Cost) CalculateCheapestHalbPlusWithHalbPrice()
+        {
+            if (!CanHaveHalbTax())
+            {
+                return (string.Empty, -1);
+            }
+
+            List<(string Name, double Cost)> costsWithHalbAndHalbPlus = CalculateCostsWithHalbAndHalbPlus();
+            var cheapestHalbPlusWithHalb = DetermineCheapestHalbPlus(costsWithHalbAndHalbPlus);
+
+            return (cheapestHalbPlusWithHalb);
+        }
+
+        private (string Category, double Cost) DetermineCheapestHalbPlus(List<(string Name, double Cost)> halbPlusPrices)
+        {
+            if (!CanHaveHalbPlusOrGA())
+            {
+                return (string.Empty, -1);
+            }
+
+            string category = string.Empty;
+            double price = 0;
+
+            for (int i = 0; i < halbPlusPrices.Count(); i++)
+            {
+                if (halbPlusPrices[i].Cost < price || price == 0)
+                {
+                    category = halbPlusPrices[i].Name;
+                    price = halbPlusPrices[i].Cost;
                 }
             }
             return (category, price);
+        }
+
+        public bool CanHaveHalbTax()
+        {
+            if (this.Age < 16)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CanHaveHalbPlusOrGA()
+        {
+            return NeedsTickets();
+        }
+
+        public bool NeedsTickets()
+        {
+            if (this.Age < 6)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -11,17 +11,17 @@ namespace ga_rechner
         private EnumSingleRetour SingleRetour { get; set; }
         private int TravelsPerYear { get; set; }
 
-        //public Travel(EnumSingleRetour TravelSingleRetour,  int TravelPerYear)
-        //{
-        //    this.SingleRetour = TravelSingleRetour;
-        //    this.TravelsPerYear = TravelPerYear;
-        //}
-
-        //public Travel(EnumSingleRetour TravelSingleRetour)
-        //{
-        //    this.SingleRetour = TravelSingleRetour;
-        //    this.TravelsPerYear = 1;
-        //}
+        public Travel(EnumSingleRetour TravelSingleRetour, string TravelName, string TravelStart, string TravelEnd, double TravelPricePerJourney, EnumTrainClass TravelTrainClass, int TravelPerYear = 1)
+            : base(TTName: TravelName, TTStart: TravelStart, TTEnd: TravelEnd, TTPricePerJourney: TravelPricePerJourney, TTTrainClass: TravelTrainClass)
+        {
+            this.SingleRetour = TravelSingleRetour;
+            this.TravelsPerYear = TravelPerYear;
+            this.Name = TravelName;
+            this.Start = TravelStart;
+            this.End = TravelEnd;
+            this.PricePerJourney = TravelPricePerJourney;
+            this.TrainClass = TravelTrainClass;
+        }
 
         public double CalculateTravelCost()
         {

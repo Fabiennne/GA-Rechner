@@ -8,6 +8,7 @@ namespace ga_rechner
 {
     public class Prices
     {
+        //TODO: should i do it with unsigned int?
         public static readonly int gaErwachsenKl1 = 6520;
         public static readonly int gaErwachsenKl2 = 3995;
         public static readonly int gaKindKl1 = 2850;
@@ -28,12 +29,12 @@ namespace ga_rechner
         public static readonly int halbJugendNeu = 120;
         public static readonly int halbJugendTreu = 100;
 
-        public static readonly int[] halbPlusErwachsen1000 = [800, 1000];
-        public static readonly int[] halbPlusErwachsen2000 = [1500, 2000];
-        public static readonly int[] halbPlusErwachsen3000 = [2100, 3000];
+        public static readonly (string Name, int Cost, int Credit) halbPlusErwachsen1000 = ("Halbtax PLUS 1000.", 800, 1000);
+        public static readonly (string Name, int Cost, int Credit) halbPlusErwachsen2000 = ("Halbtax PLUS 2000.", 1500, 2000);
+        public static readonly (string Name, int Cost, int Credit) halbPlusErwachsen3000 = ("Halbtax PLUS 3000.", 2100, 3000);
 
-        public static readonly int[] halbPlusJugend1000 = [600, 1000];
-        public static readonly int[] halbPlusJugend2000 = [1125, 2000];
-        public static readonly int[] halbPlusJugend3000 = [1575, 3000];
+        public static readonly (string Name, int Cost, int Credit) halbPlusJugend1000 = ("Halbtax PLUS Jugend 1000.", 600, 1000);
+        public static readonly (string Name, int Cost, int Credit) halbPlusJugend2000 = ("Halbtax PLUS Jugend 2000.", 1125, 2000);
+        public static readonly (string Name, int Cost, int Credit) halbPlusJugend3000 = ("Halbtax PLUS Jugend 3000.", 1575, 3000);
     }
 }
