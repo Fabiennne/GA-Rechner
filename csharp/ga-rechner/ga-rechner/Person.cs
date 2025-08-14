@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace ga_rechner
         private bool HasHalbtax { get; set; }
         private double Costs { get; set; }
         
-        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, bool personHasHalbtax = false)
+        public Person(string personName, DateTime personBirthday, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
             this.Birthday = personBirthday;
@@ -31,7 +32,7 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
-        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Travel personTravel, bool personHasHalbtax = false)
+        public Person(string personName, DateTime personBirthday, Travel personTravel, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
             this.Birthday = personBirthday;
@@ -44,7 +45,7 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
-        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Commute personCommute, bool personHasHalbtax = false)
+        public Person(string personName, DateTime personBirthday, Commute personCommute, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
             this.Birthday = personBirthday;
@@ -57,7 +58,7 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
-        public Person(string personName, DateTime personBirthday, string personStreet, string personCity, Travel personTravel, Commute personCommute, bool personHasHalbtax = false)
+        public Person(string personName, DateTime personBirthday, Travel personTravel, Commute personCommute, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
             this.Birthday = personBirthday;
@@ -67,18 +68,9 @@ namespace ga_rechner
             this.Travels = new List<Travel> { personTravel };
             this.Commutes = new List<Commute> { personCommute };
             this.HasHalbtax = personHasHalbtax && CanHaveHalbTax() ? true : false;
-            this.Costs = CalculateCosts(); //TODO: handle case if "travels" and "commutes" lists are both empty
+            this.Costs = CalculateCosts();
         }
 
-        public string getPersonName()
-        {
-            return this.Name;
-        }
-
-        public void setPersonName(string newName)
-        {
-            this.Name = newName;
-        }
 
         public void AddTravel(Travel newTravel)
         {
@@ -104,29 +96,45 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
-        public List<(string Name, double Cost)> GetOrderedListOfCosts()
+        public void PrintListOfTickets()
+        {
+            if (!NeedsTickets())
+            {
+                Console.WriteLine(this.Name + " ist " + this.Age + " Jahre alt und somit jünger als 6 Jahre und fährt kostenlos.");
+                return;
+            }
+
+            List<(string Name, double Cost)> listOfTickets = GetListOfTickets();
+
+            Console.WriteLine("Kosten für " + this.Name + ":");
+            Console.WriteLine("(Alter: " + this.Age + ", hat Halbtax: " + this.HasHalbtax + ")\n");
+            for (int i = 0; i < listOfTickets.Count; i++)
+            {
+                Console.WriteLine(listOfTickets[i].Name + ": " + listOfTickets[i].Cost);
+            }
+            Console.WriteLine("\n");
+        }
+
+        public List<(string Name, double Cost)> GetListOfTickets()
         {
             if (!NeedsTickets())
             {
                 return new List<(string Name, double Cost)>
                 {
-                    (this.Name + " fährt kostenlos: ", 0)
+                    (this.Name + " ist " + this.Age + " Jahre alt und somit jünger als 6 Jahre und fährt kostenlos: ", 0)
                 };
             }
 
-            List<(string Name, double Cost)> listOfCosts = GetListOfCosts();
+            List<(string Name, double Cost)> listOfCosts = GetUnorderedListOfTickets();
 
-            //remove values with -1
-            List<(string Name, double Cost)> cleanedList = RemoveEmptyListItems(listOfCosts);
+            listOfCosts.RemoveAll(c => c.Cost == -1);
 
-            //order list
-            List<(string Name, double Cost)> sortedCosts = SortList(cleanedList);
+            List<(string Name, double Cost)> sortedCosts = listOfCosts.OrderBy(t => t.Cost).ToList();
 
-            //return ordered list
             return sortedCosts;
         }
 
-        public List<(string Name, double Cost)> GetListOfCosts()
+        private List<(string Name, double Cost)> GetUnorderedListOfTickets()
         {
             var gaCosts = GetGAPrices();
             double gaCostsFirstClass = gaCosts.FirstClass;
@@ -146,28 +154,14 @@ namespace ga_rechner
             List<(string Name, double Cost)> costsList = new List<(string Name, double Cost)>
             {
                 ("Kosten ohne Abo", this.Costs),
-                ("GA (1.Klasse)", gaCostsFirstClass),
-                ("GA (2.Klasse)", gaCostsSecondClass),
-                ("Halbtax", costsWithHalb),
-                (cheapestHalbPlus.Category, cheapestHalbPlus.Cost),
-                (cheapestHalbPlusWithHalb.Category, cheapestHalbPlusWithHalb.Cost)
+                ("Kosten mit GA (1.Klasse)", gaCostsFirstClass),
+                ("Kosten mit GA (2.Klasse)", gaCostsSecondClass),
+                ("Kosten mit Halbtax", costsWithHalb),
+                ("Kosten mit " + cheapestHalbPlus.Category, cheapestHalbPlus.Cost),
+                ("Kosten mit " + cheapestHalbPlusWithHalb.Category + " plus Halbtax", cheapestHalbPlusWithHalb.Cost)
             };
 
             return costsList;
-        }
-
-        public List<(string Name, double Cost)> RemoveEmptyListItems(List<(string Name, double Cost)> costList)
-        {
-            costList.RemoveAll(c => c.Cost == -1);
-            
-            return costList;
-        }
-
-        public List<(string Name, double Cost)> SortList(List<(string Name, double Cost)> unsortedList)
-        {
-            List<(string Name, double Cost)> sortedList = (List<(string Name, double Cost)>)unsortedList.OrderBy(t => t.Cost);
-
-            return sortedList;
         }
 
         private int GetAge()
@@ -196,17 +190,21 @@ namespace ga_rechner
             double commuteCosts = GetCommuteCosts();
             double totalCosts = travelCosts + commuteCosts;
 
+            if (this.Age < 16 && this.Age >= 6)
+            {
+                totalCosts = CostsRemoveHalfOfCosts(totalCosts);
+            }
+
             return totalCosts;
         }
 
         private double GetTravelCosts()
         {
             double totalCosts = 0;
-            double cost = 0;
 
             for (int i = 0; i < Travels.Count; i++)
             {
-                cost = Travels[i].CalculateTravelCost();
+                double cost = Travels[i].CalculateTravelCost();
                 totalCosts += cost;
             }
 
@@ -216,11 +214,10 @@ namespace ga_rechner
         private double GetCommuteCosts()
         {
             double totalCosts = 0;
-            double cost = 0;
 
             for (int i = 0; i < Commutes.Count; i++)
             {
-                cost = Commutes[i].CalculateCommuteCostPerYear();
+                double cost = Commutes[i].CalculateCommuteCostPerYear();
                 totalCosts += cost;
             }
 
@@ -325,15 +322,22 @@ namespace ga_rechner
             return halbPlusPrices;
         }
 
+        private double CostsRemoveHalfOfCosts(double costs)
+        {
+            return costs / 2;
+        }
+
         public double CalculateCostsWithHalb()
         {
-            int halbPrice = GetHalbPrice(); //can be -1
-
             if (!CanHaveHalbTax())
             {
                 return -1;
             }
-            return (this.Costs / 2) + halbPrice;
+
+            double costsAfterHalb = CostsRemoveHalfOfCosts(this.Costs);
+            int halbPrice = GetHalbPrice();
+
+            return costsAfterHalb + halbPrice;
         }
 
         public List<(string Name, double Cost)> CalculateCostsWithHalbPlus(double costPerYear)
@@ -353,11 +357,11 @@ namespace ga_rechner
                 if (costPerYear > halbPlusPrices[i].Credit)
                 {
                     tempCost = costPerYear - halbPlusPrices[i].Credit + halbPlusPrices[i].Cost;
-                    costsWithHalbPlus.Add((costsWithHalbPlus[i].Name, tempCost));
+                    costsWithHalbPlus.Add((halbPlusPrices[i].Name, tempCost));
                 }
                 else
                 {
-                    costsWithHalbPlus.Add((costsWithHalbPlus[i].Name, halbPlusPrices[i].Cost));
+                    costsWithHalbPlus.Add((halbPlusPrices[i].Name, halbPlusPrices[i].Cost));
                 }
             }
 
@@ -371,9 +375,18 @@ namespace ga_rechner
                 return new List<(string Name, double Cost)> { (string.Empty, -1) };
             }
 
-            double costsWithHalb = CalculateCostsWithHalb();
+            double costsAfterHalb = CostsRemoveHalfOfCosts(this.Costs);
 
-            List<(string Name, double Cost)> totalCosts = CalculateCostsWithHalbPlus(costsWithHalb);
+            List<(string Name, double Cost)> totalCosts = CalculateCostsWithHalbPlus(costsAfterHalb);
+
+            int halbPrice = GetHalbPrice();
+
+            for (int i = 0; i < totalCosts.Count; i++)
+            {
+                var modifiedItem = totalCosts[i];
+                modifiedItem.Cost += halbPrice;
+                totalCosts[i] = modifiedItem;
+            }
 
             return totalCosts;
         }
@@ -425,27 +438,22 @@ namespace ga_rechner
             return (category, price);
         }
 
+        // todo: rename to IsChildOrBaby()
         public bool CanHaveHalbTax()
         {
-            if (this.Age < 16)
-            {
-                return false;
-            }
-            return true;
+            return this.Age >= 16;
         }
 
+        // todo remove after renaming NeedsTickets
         public bool CanHaveHalbPlusOrGA()
         {
             return NeedsTickets();
         }
 
+        // todo: rename to IsBaby()
         public bool NeedsTickets()
         {
-            if (this.Age < 6)
-            {
-                return false;
-            }
-            return true;
+            return this.Age >= 6;
         }
     }
 }

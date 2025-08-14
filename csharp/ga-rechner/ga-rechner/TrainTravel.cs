@@ -11,15 +11,16 @@ namespace ga_rechner
         protected string Name { get; set; }
         protected string Start {  get; set; }
         protected string End { get; set; }
-        protected double PricePerJourney { get; set; }
+        protected double SimpleFullPricePerJourney { get; set; }
         protected EnumTrainClass TrainClass {  get; set; }
+        protected const int AmountWeeksPerYear = 52;
 
-        protected TrainTravel(string TTName, string TTStart, string TTEnd, double TTPricePerJourney, EnumTrainClass TTTrainClass)
+        protected TrainTravel(string TTName, string TTStart, string TTEnd, double TTSimpleFullPricePerJourney, EnumTrainClass TTTrainClass)
         {
             this.Name = TTName;
             this.Start = TTStart;
             this.End = TTEnd;
-            this.PricePerJourney = TTPricePerJourney;
+            this.SimpleFullPricePerJourney = TTSimpleFullPricePerJourney;
             this.TrainClass = TTTrainClass;
         }
     }
