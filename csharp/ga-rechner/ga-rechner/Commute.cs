@@ -8,12 +8,13 @@ namespace ga_rechner
 {
     public class Commute : TrainTravel
     {
+
         private int TravelDaysPerWeek {  get; set; }
         private int RidesPerDay { get; set; }
         private int VacationWeeks { get; set; }
 
-        public Commute(int CommuteTravelDaysPerWeek, int CommuteRidesPerDay, string CommuteName, string CommuteStart, string CommuteEnd, double CommutePricePerJourney, EnumTrainClass CommuteTrainClass, int CommuteVacationWeeks = 4)
-            : base(TTName: CommuteName, TTStart: CommuteStart, TTEnd: CommuteEnd, TTPricePerJourney: CommutePricePerJourney, TTTrainClass: CommuteTrainClass)
+        public Commute(int CommuteTravelDaysPerWeek, int CommuteRidesPerDay, double CommuteSimpleFullPricePerJourney, int CommuteVacationWeeks = 4, string CommuteName = "commute name", string CommuteStart = "commute start", string CommuteEnd = "commute end", EnumTrainClass CommuteTrainClass = EnumTrainClass.Second)
+            : base(TTName: CommuteName, TTStart: CommuteStart, TTEnd: CommuteEnd, TTSimpleFullPricePerJourney: CommuteSimpleFullPricePerJourney, TTTrainClass: CommuteTrainClass)
         {
             this.TravelDaysPerWeek = CommuteTravelDaysPerWeek;
             this.RidesPerDay = CommuteRidesPerDay;
@@ -21,15 +22,16 @@ namespace ga_rechner
             this.Name = CommuteName;
             this.Start = CommuteStart;
             this.End = CommuteEnd;
-            this.PricePerJourney = CommutePricePerJourney;
+            this.SimpleFullPricePerJourney = CommuteSimpleFullPricePerJourney;
             this.TrainClass = CommuteTrainClass;
         }
 
+
         public double CalculateCommuteCostPerYear()
         {
-            double costsPerDay = this.PricePerJourney * this.RidesPerDay;
+            double costsPerDay = this.SimpleFullPricePerJourney * this.RidesPerDay;
             double costsPerWeek = costsPerDay * this.TravelDaysPerWeek;
-            double costsPerYear = costsPerWeek * (52 - this.VacationWeeks);
+            double costsPerYear = costsPerWeek * (AmountWeeksPerYear - this.VacationWeeks);
 
             return costsPerYear;
         }
