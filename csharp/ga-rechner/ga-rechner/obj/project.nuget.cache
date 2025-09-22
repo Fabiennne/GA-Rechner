@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gsphQ9lhcdc=",
+  "dgSpecHash": "lPVPaQ2xHWk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\M0608636\\Source\\Repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\ga-rechner.csproj",
+  "projectFilePath": "C:\\Users\\Fabienne\\source\\repos\\Fabiennne\\GA-Rechner\\csharp\\ga-rechner\\ga-rechner\\ga-rechner.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\M0608636\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+    "C:\\Users\\Fabienne\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
   ],
   "logs": []
 }
