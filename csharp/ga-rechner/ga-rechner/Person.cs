@@ -78,6 +78,10 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Adds a new <see cref="Commute"/> to the person's list of commutes and updates the total costs.
+        /// </summary>
+        /// <param name="newCommute">The commute to be added.</param>
         public void AddCommute(Commute newCommute)
         {
             this.Commutes.Add(newCommute);
@@ -115,7 +119,7 @@ namespace ga_rechner
             Console.WriteLine("\n");
         }
 
-        public List<(string Name, double Cost)> GetListOfTickets()
+        private List<(string Name, double Cost)> GetListOfTickets()
         {
             if (!NeedsTickets())
             {
@@ -179,7 +183,7 @@ namespace ga_rechner
             return age;
         }
 
-        public double CalculateCosts()
+        private double CalculateCosts()
         {
             if (!NeedsTickets())
             {
@@ -224,7 +228,7 @@ namespace ga_rechner
             return totalCosts;
         }
 
-        public (int FirstClass, int SecondClass) GetGAPrices()
+        private (int FirstClass, int SecondClass) GetGAPrices()
         {
             int one, two;
 
@@ -262,7 +266,7 @@ namespace ga_rechner
             return (one, two);
         }
 
-        public int GetHalbPrice()
+        private int GetHalbPrice()
         {
             if (!CanHaveHalbTax())
             {
@@ -297,7 +301,7 @@ namespace ga_rechner
             return halbPrice;
         }
 
-        public List<(string Name, int Cost, int Credit)> GetHalbPlusPrices()
+        private List<(string Name, int Cost, int Credit)> GetHalbPlusPrices()
         {
             if (!CanHaveHalbPlusOrGA())
             {
@@ -327,7 +331,7 @@ namespace ga_rechner
             return costs / 2;
         }
 
-        public double CalculateCostsWithHalb()
+        private double CalculateCostsWithHalb()
         {
             if (!CanHaveHalbTax())
             {
@@ -340,7 +344,7 @@ namespace ga_rechner
             return costsAfterHalb + halbPrice;
         }
 
-        public List<(string Name, double Cost)> CalculateCostsWithHalbPlus(double costPerYear)
+        private List<(string Name, double Cost)> CalculateCostsWithHalbPlus(double costPerYear)
         {
             if (!CanHaveHalbPlusOrGA())
             {
@@ -368,7 +372,7 @@ namespace ga_rechner
             return costsWithHalbPlus;
         }
 
-        public List<(string Name, double Cost)> CalculateCostsWithHalbAndHalbPlus()
+        private List<(string Name, double Cost)> CalculateCostsWithHalbAndHalbPlus()
         {
             if (!CanHaveHalbTax())
             {
@@ -391,7 +395,7 @@ namespace ga_rechner
             return totalCosts;
         }
 
-        public (string Category, double Cost) CalculateCheapestHalbPlusPrice()
+        private (string Category, double Cost) CalculateCheapestHalbPlusPrice()
         {
             if (!CanHaveHalbPlusOrGA())
             {
@@ -404,7 +408,7 @@ namespace ga_rechner
             return (cheapestHalbPlus);
         }
 
-        public (string Category, double Cost) CalculateCheapestHalbPlusWithHalbPrice()
+        private (string Category, double Cost) CalculateCheapestHalbPlusWithHalbPrice()
         {
             if (!CanHaveHalbTax())
             {
@@ -439,19 +443,19 @@ namespace ga_rechner
         }
 
         // todo: rename to IsChildOrBaby()
-        public bool CanHaveHalbTax()
+        private bool CanHaveHalbTax()
         {
             return this.Age >= 16;
         }
 
         // todo remove after renaming NeedsTickets
-        public bool CanHaveHalbPlusOrGA()
+        private bool CanHaveHalbPlusOrGA()
         {
             return NeedsTickets();
         }
 
         // todo: rename to IsBaby()
-        public bool NeedsTickets()
+        private bool NeedsTickets()
         {
             return this.Age >= 6;
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7ea8664a33376fc6ac289ff6d1a4869d567ca07")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4926cee723cd16cbcac2031015b03c760a070e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ga-rechner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
