@@ -10,11 +10,12 @@ namespace ga_rechner
             Commute commute = new Commute(5, 2, 7.6);
 
             Person senior = new Person(personName: "senior dubel", personBirthday: new DateTime(1945, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
-            Person erwachsen = new Person(personName: "erwachsen dubel", personBirthday: new DateTime(1970, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
-            Person fuefezwanzgi = new Person(personName: "25 dubel", personBirthday: new DateTime(2000, 4, 9), personTravel: travel, personCommute: commute, personHasHalbtax: true);
-            Person jugend = new Person(personName: "jugend dubel", personBirthday: new DateTime(2000, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
+            Person erwachsen = new Person(personName: "erwachsen dubel", personBirthday: new DateTime(1980, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
+            Person fuefezwanzgi = new Person(personName: "25 dubel", personBirthday: new DateTime(2000, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
+            Person jugend = new Person(personName: "jugend dubel", personBirthday: new DateTime(2002, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
             Person kind = new Person(personName: "kind dubel", personBirthday: new DateTime(2014, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
             Person baby = new Person(personName: "baby dubel", personBirthday: new DateTime(2021, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
+
 
             senior.PrintListOfTickets();
             erwachsen.PrintListOfTickets();
@@ -22,6 +23,7 @@ namespace ga_rechner
             jugend.PrintListOfTickets();
             kind.PrintListOfTickets();
             baby.PrintListOfTickets();
+
         }
     }
 }
