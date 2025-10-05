@@ -16,7 +16,6 @@ namespace ga_rechner
             Person kind = new Person(personName: "kind dubel", personBirthday: new DateTime(2014, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
             Person baby = new Person(personName: "baby dubel", personBirthday: new DateTime(2021, 9, 4), personTravel: travel, personCommute: commute, personHasHalbtax: true);
 
-
             senior.PrintListOfTickets();
             erwachsen.PrintListOfTickets();
             fuefezwanzgi.PrintListOfTickets();

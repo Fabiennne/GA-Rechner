@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ga_rechner
 {
+    /// <summary>
+    /// Represents a person with various attributes and methods to manage their travel and commute data.
+    /// </summary>
     public class Person
     {
         private string Name { get; set; }
@@ -18,7 +21,15 @@ namespace ga_rechner
         private List<Commute> Commutes { get; set; }
         private bool HasHalbtax { get; set; }
         private double Costs { get; set; }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        /// <param name="personName">The name of the person.</param>
+        /// <param name="personBirthday">The birthday of the person.</param>
+        /// <param name="personStreet">(optional)The street address of the person.</param>
+        /// <param name="personCity">(optional) The city the person lives in.</param>
+        /// <param name="personHasHalbtax">Indicates if the person already has a half-fare card.</param>
         public Person(string personName, DateTime personBirthday, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
@@ -32,6 +43,15 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        /// <param name="personName">The name of the person.</param>
+        /// <param name="personBirthday">The birthday of the person.</param>
+        /// <param name="personTravel">The information for a specific travel route of the person.</param>
+        /// <param name="personStreet">(optional) The street address of the person.</param>
+        /// <param name="personCity">(optional) The city the person lives in.</param>
+        /// <param name="personHasHalbtax">Indicates if the person already has a half-fare card.</param>
         public Person(string personName, DateTime personBirthday, Travel personTravel, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
@@ -45,6 +65,15 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        /// <param name="personName">The name of the person.</param>
+        /// <param name="personBirthday">The birthday of the person.</param>
+        /// <param name="personCommute">The information for a specific commute route of the person.</param>
+        /// <param name="personStreet">(optional) The street address of the person.</param>
+        /// <param name="personCity">(optional) The city the person lives in.</param>
+        /// <param name="personHasHalbtax">Indicates if the person already has a half-fare card.</param>
         public Person(string personName, DateTime personBirthday, Commute personCommute, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
@@ -58,6 +87,16 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        /// <param name="personName">The name of the person.</param>
+        /// <param name="personBirthday">The birthday of the person.</param>
+        /// <param name="personTravel">The information for a specific travel route of the person.</param>
+        /// <param name="personCommute">The information for a specific commute route of the person.</param>
+        /// <param name="personStreet">(optional) The street address of the person.</param>
+        /// <param name="personCity">(optional) The city the person lives in.</param>
+        /// <param name="personHasHalbtax">Indicates if the person already has a half-fare card.</param>
         public Person(string personName, DateTime personBirthday, Travel personTravel, Commute personCommute, string personStreet = "strasse", string personCity = "stadt", bool personHasHalbtax = false)
         {
             this.Name = personName;
@@ -71,7 +110,10 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
-
+        /// <summary>
+        /// Adds a new <see cref="Travel"/> to the person's list of travels and updates the total costs.
+        /// </summary>
+        /// <param name="newTravel">The travel to be added.</param>
         public void AddTravel(Travel newTravel)
         {
             this.Travels.Add(newTravel);
@@ -88,18 +130,36 @@ namespace ga_rechner
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Empties the person's list of travels and updates the total costs.
+        /// </summary>
         public void EmptyTravels()
         {
             this.Travels.Clear();
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Empties the person's list of commutes and updates the total costs.
+        /// </summary>
         public void EmptyCommutes()
         {
             this.Commutes.Clear();
             this.Costs = CalculateCosts();
         }
 
+        /// <summary>
+        /// Empties the person's list of travels and commutes and updates the total costs.
+        /// </summary>
+        public void EmptyTravelsAndCommutes() 
+        {
+            EmptyTravels();
+            EmptyCommutes();
+        }
+
+        /// <summary>
+        /// Prints the list of different ways to pay for the person's travels and commutes and the respective costs. It also prints their age and whether they have a half-fare card.
+        /// </summary>
         public void PrintListOfTickets()
         {
             if (!NeedsTickets())
@@ -119,6 +179,10 @@ namespace ga_rechner
             Console.WriteLine("\n");
         }
 
+        /// <summary>
+        /// Gets a list of different ways to pay for the person's travels and commutes and the respective costs.
+        /// </summary>
+        /// <returns>A list of tuples containing the name and cost of each ticket option. Sorted by cost, cheapest to most expensive.</returns>
         private List<(string Name, double Cost)> GetListOfTickets()
         {
             if (!NeedsTickets())
@@ -138,6 +202,10 @@ namespace ga_rechner
             return sortedCosts;
         }
 
+        /// <summary>
+        /// Gets an unordered list of ticket options and their costs.
+        /// </summary>
+        /// <returns>An unordered list of tuples containing the name and cost of each ticket option.</returns>
         private List<(string Name, double Cost)> GetUnorderedListOfTickets()
         {
             var gaCosts = GetGAPrices();
@@ -168,6 +236,10 @@ namespace ga_rechner
             return costsList;
         }
 
+        /// <summary>
+        /// Gets the age of the person based on their birthday.
+        /// </summary>
+        /// <returns>The age of the person in years.</returns>
         private int GetAge()
         {
             DateTime today = DateTime.Today;
@@ -183,6 +255,10 @@ namespace ga_rechner
             return age;
         }
 
+        /// <summary>
+        /// Calculates the total costs for the person's travels and commutes.
+        /// </summary>
+        /// <returns>The total costs as a double.</returns>
         private double CalculateCosts()
         {
             if (!NeedsTickets())
@@ -202,6 +278,10 @@ namespace ga_rechner
             return totalCosts;
         }
 
+        /// <summary>
+        /// Gets the travel costs for the person's travels.
+        /// </summary>
+        /// <returns>The total travel costs as a double.</returns>
         private double GetTravelCosts()
         {
             double totalCosts = 0;
@@ -215,6 +295,10 @@ namespace ga_rechner
             return totalCosts;
         }
 
+        /// <summary>
+        /// Gets the commute costs for the person's commutes.
+        /// </summary>
+        /// <returns>The total commute costs as a double.</returns>
         private double GetCommuteCosts()
         {
             double totalCosts = 0;
@@ -228,6 +312,10 @@ namespace ga_rechner
             return totalCosts;
         }
 
+        /// <summary>
+        /// Gets the prices for the GA (General Abonnement) in both first and second class based on the person's age.
+        /// </summary>
+        /// <returns>A tuple containing the prices for the first and second class.</returns>
         private (int FirstClass, int SecondClass) GetGAPrices()
         {
             int one, two;
@@ -266,6 +354,10 @@ namespace ga_rechner
             return (one, two);
         }
 
+        /// <summary>
+        /// Gets the price for the HalbTax based on the person's age, whether they already have it and whether they can have it.
+        /// </summary>
+        /// <returns>The price for the HalbTax as an integer.</returns>
         private int GetHalbPrice()
         {
             if (!CanHaveHalbTax())
@@ -301,6 +393,10 @@ namespace ga_rechner
             return halbPrice;
         }
 
+        /// <summary>
+        /// Gets the prices for each type of HalbtaxPlus based on the person's age and whether they can have it.
+        /// </summary>
+        /// <returns>A list of tuples containing the name, cost and amount a person can spend for each type of HalbtaxPlus.</returns>
         private List<(string Name, int Cost, int Credit)> GetHalbPlusPrices()
         {
             if (!CanHaveHalbPlusOrGA())
@@ -326,11 +422,20 @@ namespace ga_rechner
             return halbPlusPrices;
         }
 
+        /// <summary>
+        /// Removes half of the costs from the given amount. For example to calculate the costs with Halbtax or if the person is a child.
+        /// </summary>
+        /// <param name="costs">The original costs as a double.</param>
+        /// <returns>The costs after removing half as a double.</returns>
         private double CostsRemoveHalfOfCosts(double costs)
         {
             return costs / 2;
         }
 
+        /// <summary>
+        /// Calculates the travel and commute costs with Halbtax.
+        /// </summary>
+        /// <returns>The total costs with Halbtax as a double, including the costs for the Halbtax.</returns>
         private double CalculateCostsWithHalb()
         {
             if (!CanHaveHalbTax())
@@ -344,6 +449,11 @@ namespace ga_rechner
             return costsAfterHalb + halbPrice;
         }
 
+        /// <summary>
+        /// Calculates the costs with each type of HalbtaxPlus.
+        /// </summary>
+        /// <param name="costPerYear">The original travel costs per year as a double.</param>
+        /// <returns>A list of tuples containing the costs for each type of HalbtaxPlus.</returns>
         private List<(string Name, double Cost)> CalculateCostsWithHalbPlus(double costPerYear)
         {
             if (!CanHaveHalbPlusOrGA())
@@ -372,6 +482,10 @@ namespace ga_rechner
             return costsWithHalbPlus;
         }
 
+        /// <summary>
+        /// Calculates the costs with Halbtax and each type of HalbtaxPlus.
+        /// </summary>
+        /// <returns>A list of tuples containing the costs with Halbtax and each type of HalbtaxPlus.</returns>
         private List<(string Name, double Cost)> CalculateCostsWithHalbAndHalbPlus()
         {
             if (!CanHaveHalbTax())
@@ -395,6 +509,10 @@ namespace ga_rechner
             return totalCosts;
         }
 
+        /// <summary>
+        /// Calculates which HalbtaxPlus would be the cheapest for the person, based on their travel needs. (Without Halbtax)
+        /// </summary>
+        /// <returns>A tuple containing the category and how much it costs with the cheapest HalbtaxPlus. (Without Halbtax)</returns>
         private (string Category, double Cost) CalculateCheapestHalbPlusPrice()
         {
             if (!CanHaveHalbPlusOrGA())
@@ -408,6 +526,10 @@ namespace ga_rechner
             return (cheapestHalbPlus);
         }
 
+        /// <summary>
+        /// Calculates the cheapest HalbtaxPlus price with the Halbtax price included.
+        /// </summary>
+        /// <returns>A tuple containing the category and how much it costs with the cheapest HalbtaxPlus. (with Halbtax)</returns>
         private (string Category, double Cost) CalculateCheapestHalbPlusWithHalbPrice()
         {
             if (!CanHaveHalbTax())
@@ -421,6 +543,11 @@ namespace ga_rechner
             return (cheapestHalbPlusWithHalb);
         }
 
+        /// <summary>
+        /// Determines the cheapest HalbtaxPlus from a list of prices.
+        /// </summary>
+        /// <param name="halbPlusPrices">A list of different costs with HalbtaxPlus.</param>
+        /// <returns>A tuple containing the category and how much it costs with the cheapest HalbtaxPlus.</returns>
         private (string Category, double Cost) DetermineCheapestHalbPlus(List<(string Name, double Cost)> halbPlusPrices)
         {
             if (!CanHaveHalbPlusOrGA())
@@ -443,18 +570,27 @@ namespace ga_rechner
         }
 
         // todo: rename to IsChildOrBaby()
+        /// <summary>
+        /// Determines if the person is eligible for Halbtax. (16 or older)
+        /// </summary>
         private bool CanHaveHalbTax()
         {
             return this.Age >= 16;
         }
 
         // todo remove after renaming NeedsTickets
+        /// <summary>
+        /// Determines if the person is eligible for HalbtaxPlus or GA. (6 or older)
+        /// </summary>
         private bool CanHaveHalbPlusOrGA()
         {
             return NeedsTickets();
         }
 
         // todo: rename to IsBaby()
+        /// <summary>
+        /// Determines if the person is eligible for a ticket. (6 or older)
+        /// </summary>
         private bool NeedsTickets()
         {
             return this.Age >= 6;
